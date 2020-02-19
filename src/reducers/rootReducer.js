@@ -18,14 +18,14 @@ export const initState = {
 export const rootReducer = (state = initState, action) => {
     switch (action.type) {
         case "ADD_FEATURE":
-            return state.car.features.map(i => i.id).includes(action.obj.id) ? { ...state } :
-            {    ...state, additionalPrice: [...state.additionalPrice, action.obj.price], car: { ...state.car, features: [...state.car.features, action.obj]}, additionalFeatures: state.additionalFeatures.filter(i => i.id !== action.obj.id) 
+            return {
+                ...state, additionalPrice: [...state.additionalPrice, action.obj.price], car: { ...state.car, features: [...state.car.features, action.obj] }, additionalFeatures: state.additionalFeatures.filter(i => i.id !== action.obj.id)
             }
         case "REMOVE_FEATURE":
             console.log("filtering features", state.car.features.filter(i =>( i.id === action.obj.id)))
             console.log("features array, action id",state.car.features.map(i => i.id), action.obj.id)
             return {
-                ...state, additionalPrice: [ ...state.additionalPrice, -action.obj.price ], car: { ...state.car, features: [...state.car.features.filter(i =>( i.id !== action.obj.id))  ], additionalFeatures: [...state.additionalFeatures, action.obj] }
+                ...state, additionalPrice: [ ...state.additionalPrice, -action.obj.price ], car: { ...state.car, features: [...state.car.features.filter(i =>( i.id !== action.obj.id))  ] }, additionalFeatures: [...state.additionalFeatures, action.obj]
             }
         default:
             return state               
