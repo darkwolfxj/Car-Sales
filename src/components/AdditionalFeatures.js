@@ -1,14 +1,14 @@
 import React from 'react';
 import AdditionalFeature from './AdditionalFeature';
 
-const AdditionalFeatures = props => {
+const AdditionalFeatures = ({ additionalFeatures,addFeature }) => {
   return (
     <div className="content">
       <h4>Additional Features</h4>
-      {props.additionalFeatures.length ? (
+      {additionalFeatures.length ? (
         <ol type="1">
-          {props.additionalFeatures.map(item => (
-            <AdditionalFeature key={item.id} feature={item} />
+          {additionalFeatures.map(item => (
+            <AdditionalFeature addFeature={ addFeature } key={ Math.random() } feature={ item } />
           ))}
         </ol>
       ) : (
